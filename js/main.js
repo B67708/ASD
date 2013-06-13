@@ -2,10 +2,10 @@
 //ASD 1306
 // week 2
 $('#main').on('pageinit', function(){
-	$("#inventory").on('click', getData);
-	$("#json").on("click", autoFill);
-	$("#xml").on("click", autoFill);
-	$("#clear").on("click", clearLocal);
+	$('#inventory').on('click', getData);
+	$('#jsonData').on('click', autoFill);
+	$('#xmlData').on('click', autoFill);
+	$('#clear').on('click', clearLocal);
 });	
 		
 $('#addItem').on('pageinit', function(){
@@ -33,14 +33,14 @@ $('#about').on('pageinit', function (){
 
 var autoFill = function(){
 	var type = $(this).attr('id');
-	if(type === 'xml'){
+	//console.log(type)
+	if(type === 'xmlData'){
 		$.ajax({
-			url:'data.xml',
+			url: 'data.xml',
 			type: 'GET', 
 			dataType: 'xml',
-			success: function(data){
-				console.log('xml Loaded');
-				$(data).find('vehicle').each(function(){
+			success: function(result){
+				$(result).find('vehicle').each(function(){
 					var item = $(this);
 					var thingy = "";
 					thingy += '{"New or Used":"' + item.find('newUsed').text()+'",';
@@ -52,30 +52,33 @@ var autoFill = function(){
 					thingy += '"Date":"' + item.find('myDate').text()+'",';
 					thingy += '"Info":"' + item.find('infoBox').text()+'"}';
 					
-					var id = Math.floor(Math.random()*123456789);
-					localStorage.setItem(id, thingy)
+					
+					var id = Math.floor(Math.random()*999999999);
+					localStorage.setItem(id, thingy);
 				});
 				alert("Xml Loaded");
 				},
-				error:function(data){
+				error:function(result){
 					alert("Error, Xml Not Loaded");
+					console.log(result);
+					
 			}
 		});
 	}else{
 		$.ajax({
-			url:'data.json',
+			url: 'data.json',
 			type:'GET',
 			dataType: 'json',
-			success: function(data){
-				console.log ("json Data Loaded");
-				for(var y in Data){
-					var id = Math.floor(Math.random()*123456789);
-					localStorage.setItem(id, JSON.stringify(data[y]));
+			success: function(result){
+				for(var y in result){
+					var id = Math.floor(Math.random()*999999999);
+					localStorage.setItem(id, JSON.stringify(result[y]));
 				}
 				alert("Json Loaded");
 			},
-			error:function(data){
+			error:function(result){
 				alert("Error, Json not loaded");
+				console.log(result)
 			}
 		});
 	}
@@ -149,7 +152,7 @@ var storeData = function(data){
 		localStorage.setItem(id, JSON.stringify(newInv));
 		$('#submit').html('Save Vehicle').removeData('key');
 		alert("Vehicle Saved!");
-		window.location.reload();
+		$.mobile.changePage("#main");
 };
 
 var editInv = function(){
