@@ -2,21 +2,220 @@
 <!-- 
 John Cardiff-Winchell
 ASDI 1306
-Week 1 project
+Week 2 project
 -->
 
-<html>
+<html lang="en">
+<head>
 
-	<head>
-		<title></title>
-		<link rel="stylesheet" href="main.css">
-	</head>
+	<meta charset="utf-8">
 	
-	<body>
+	<title>Car Lot Inventory</title>
 	
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
+	<!-- Mobile IE needs ClearType for smoothing fonts -->
+	<meta http-equiv="cleartype" content="on">
 	
-		<script src="main.js"></script>
-	</body>
+	<!-- StyleSheets under here -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.css"/>
+	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/libs/modernizr.custom.min.js"></script>
+
+</head>
+<body>
+	<div data-role="page" id="main" data-theme="a">
+		<div data-role="header" data-position="fixed">
+		<link rel="stylesheet" href="CSS/styles.min.css"/>
+		<img src="IMG/goldbrand.png">
+		</div>
+		<div data-role="content" id="contentData">
+			<p><a href="#addItem"> <img src="IMG/CallToAction.png" width="290px"></a></p>
+		
+			<a href="#inventory" id="viewData" data-role="button">View Inventory</a>
+			<a href="#" id="jsonData" data-role="button">Json Data</a>
+			<a href="#" id="xmlData" data-role="button">XML Data</a>
+			<a href="#" id="clear" data-role="button">Clear Local Storage</a>
+		 
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#main" data-icon="home">Home</a></li>
+					<li><a href="#news" data-icon="bars">News Stream</a></li>
+					<li><a href="#about" data-icon="info">About</a></li>	
+				</ul>
+			</div>
+		</div>
+	</div>	
+		<div data-role="page" id="news" data-theme="a">
+		<div data-role="header" data-position="fixed" >
+			<h1>News Stream</h1>
+		</div>
+		<div data-role="content">
+			<p>4-15-2013: Added Dodge Ram to Inventory</p>
+			<p>4-15-2013: Added Dodge Viper to Inventory</p>
+			<p>4-15-2013: Added Ford Fusion to Inventory</p>
+			<p>4-14-2013: Added Buick Century to Inventory</p>
+			<p>4-13-2013: Added Chevrolet Camero to Inventory</p>
+			<p>4-13-2013: Added Chevrolet Impala to Inventory</p>
+			<p>4-10-2013: Added Jeep Wrangler to Inventory</p>
+			<p>4-10-2013: Added Jeep Compass to Inventory</p>
+			<p>4-9-2013: Added Ford F-150 to Inventory</p>
+			<p>4-8-2013: Added Buick Regal to Inventory</p>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#main" data-icon="home">Home</a></li>
+					<li><a href="#news" data-icon="bars">News Stream</a></li>
+					<li><a href="#about" data-icon="info">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="about" data-theme="a">
+		<div data-role="header" data-position="fixed" >
+			<h1>About</h1>
+		</div>
+		<div data-role="content">
+			<h2>About App</h2>
+			<p>This app was designed for the purpose of maintaining car lot inventory while roaming the parking lot on your cell phone.</p>
+			<h2>About me</h2>
+			<p>I am just a 27 year old full time college student, worker, father, and almost husband.</p>
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#main" data-icon="home">Home</a></li>
+					<li><a href="#news" data-icon="bars">News Stream</a></li>
+					<li><a href="#about" data-icon="info">About</a></li>	
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="addItem" data-theme="a">
+		<div data-role="header" data-position="fixed" >
+			<h1>Car Inventory Log</h1>
+		</div>
+		<div data-role="content">
+		<form action="" id="addItemForm">
+			<div data-role="fieldcontain">
+				<h4><span style="color:red">* is required field</span></h4>
+				<div data-role="fieldcontain">
+				<label for="newUsed">New or Used</label>
+	    		<select name="newUsed" id="newUsed" data-native-menu="false" value="">
+	        		<option value="New">New</option>
+	        		<option value="Used">Used</option>
+
+	        	</select>
+	    	</div>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="makeMenu"><span style="color:red">*</span>Vehicle Make</label>
+	    		<select name="makeMenu" id="makeMenu" data-native-menu="false" value="" class="required">
+	        		<option value="">--- Select a make ---</option>
+	        		<option value="Buick">Buick</option>
+	        		<option value="Chevrolet">Chevrolet</option>
+	        		<option value="Dodge">Dodge</option>
+	        		<option value="Ford">Ford</option>
+	        		<option value="Jeep">Jeep</option>
+	        	</select>
+	    	</div>
+	    	<div data-role="fieldcontain">
+				<label for="modelMenu"><span style="color:red">*</span>Vehicle Model</label>
+	    		<select name="modelMenu" id="modelMenu" data-native-menu="false" value="" class="required">
+	        		<option value="">--- Select a model ---</option>
+	        		<option value="Camero">Camero</option>
+	        		<option value="Cobalt">Cobalt</option>
+	        		<option value="Cruze">Cruze</option>
+	        		<option value="Impala">Impala</option>
+	        		<option value="Explorer">Explorer</option>
+	        		<option value="F-150">F-150</option>
+	        		<option value="Focus">Focus</option>
+	        		<option value="Fusion">Fusion</option>
+	        		<option value="Century">Century</option>
+	        		<option value="Enclave">Enclave</option>
+	        		<option value="Regal">Regal</option>
+	        		<option value="Lacrosse">Lascrosse</option>
+	        		<option value="Dart">Dart</option>
+	        		<option value="Durango">Durango</option>
+	        		<option value="Ram">Ram</option>
+	        		<option value="Viper">Viper</option>
+	        		<option value="Compass">Compass</option>
+	        		<option value="Liberty">Liberty</option>
+	        		<option value="Patriot">Patriot</option>
+	        		<option value="Wrangler">Wrangler</option>
+	        	</select>
+	    	</div>
+	    	<div data-role="fieldcontain">
+	    		<label for="yearBox"><span style="color:red">*</span>Year</label>
+	    		<input type="text" name="yearBox" id="yearBox" value="" placeholder="Ex: 2013" class="required">
+	    	</div>
+	    	<div data-role="fieldcontain">
+	    		<label for="mileBox">How many miles are on this vehicle?</label>
+	    		<input type="text" name="mileBox" id="mileBox" value="" placeholder="Ex: 69,726">
+	    	</div>
+	    	<div data-role="fieldcontain">
+	    		<label for="conditionSlider">Vehicle Condition</label>
+	    		<input type="range" name="conditionSlider" id="conditionSlider" value="5" min="1" max="5" data-highlight="true">
+	    	</div>
+	    	<div data-role="fieldcontain">
+	    		<label for="myDate">Date vehicle added</label>
+	    		<input name="myDate" id="myDate" type="date" data-role="datebox" data-options="{"mode": "calbox"}" value="" placeholder="MM/DD/YYYY">
+	    	</div>
+	    	<div data-role="fieldcontain">
+				<label for="infoBox">Additional Information</label>
+	    		<input type="text" name="infoBox" id="infoBox" value="" placeholder="Notes go here">
+	    	</div>
+	    	<div data-role="fieldcontain"> 
+	    		<input type="submit" id="submit" value="Submit" data-theme="a">
+		    </div>
+		    <div data-role="fieldcontain"> 
+	    		<input type="reset" id="reset" value="Reset">
+		    </div>
+		   
+	    </form>
+	    </div>
+		<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#main" data-icon="home">Home</a></li>
+						<li><a href="#news" data-icon="bars">News Stream</a></li>
+						<li><a href="#about" data-icon="info">About</a></li>
+					</ul>
+				</div>
+			</div>
+			
+	</div>
+	<div data-role="page" id="inventory">
+		<div data-role="header" data-position="fixed" >
+			<h1>Vehicle Inventory Log</h1>
+		</div>
+		<div data-role="content" id="invContent" data-role="listview" data-filter="true">
+			
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#main" data-icon="home">Home</a></li>
+					<li><a href="#news" data-icon="bars">News Stream</a></li>
+					<li><a href="#about" data-icon="info">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- JavaScript under here -->
+	<script src="js/libs/jquery-2.0.2.min.js "type= "text/javascript"></script>
+	<script src="js/libs/jquery.mobile-1.3.1.min.js "type="text/javascript"></script>
+	<script src="js/libs/jquery.validate.min.js"type="text/javascript"></script>
+	<script src="js/main.js"type="text/javascript"></script>
 	
+
+</body>
 </html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vehicles>
+	<vehicle>
+		<newUsed>New</newUsed>
+		<makeMenu>Dodge</makeMenu>
+		<modelMenu>Viper</modelMenu>
+		<yearBox>2013</yearBox>
+		<mileBox>2</mileBox>
+		<conditionSlider>5</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>FAST!</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>Used</newUsed>
+		<makeMenu>Ford</makeMenu>
+		<modelMenu>Focus</modelMenu>
+		<yearBox>2006</yearBox>
+		<mileBox>82,000</mileBox>
+		<conditionSlider>3</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>Good Gas Mileage!</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>Used</newUsed>
+		<makeMenu>Buick</makeMenu>
+		<modelMenu>Regal</modelMenu>
+		<yearBox>2000</yearBox>
+		<mileBox>105,000</mileBox>
+		<conditionSlider>4</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>Supercharged 3800</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>New</newUsed>
+		<makeMenu>Dodge</makeMenu>
+		<modelMenu>Dart</modelMenu>
+		<yearBox>2013</yearBox>
+		<mileBox>15</mileBox>
+		<conditionSlider>5</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>Rally Edition!</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>New</newUsed>
+		<makeMenu>Chevrolet</makeMenu>
+		<modelMenu>Corvette</modelMenu>
+		<yearBox>2014</yearBox>
+		<mileBox>0</mileBox>
+		<conditionSlider>5</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>New Sting Ray</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>Used</newUsed>
+		<makeMenu>Dodge</makeMenu>
+		<modelMenu>Ram</modelMenu>
+		<yearBox>2010</yearBox>
+		<mileBox>30,000</mileBox>
+		<conditionSlider>4</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>Good Condition, Hemi Motor!</infoBox>
+	</vehicle>
+	<vehicle>
+		<newUsed>New</newUsed>
+		<makeMenu>Chevrolet</makeMenu>
+		<modelMenu>Cruze</modelMenu>
+		<yearBox>2013</yearBox>
+		<mileBox>4</mileBox>
+		<conditionSlider>5</conditionSlider>
+		<myDate>6/12/13</myDate>
+		<infoBox>Great Midsize Vehicle With Outstanding MPG!</infoBox>
+	</vehicle>
+	
+</vehicles>

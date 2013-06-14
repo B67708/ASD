@@ -1,0 +1,116 @@
+//John Cardiff-Winchell
+//ASD 1306
+//Week 2
+
+
+var item = {
+	"vehicle1": {
+		"New or Used:" : "New",
+		"Make:" : "Chevrolet",
+		"Model:" : "Cobalt",
+		"Year:" : "2013",
+		"Mileage:" : "3",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Notes:" : "Brand new. Loaded SS model."
+	},
+
+	"vehicle2": {
+		"New or Used:" : "New",
+		"Make:" : "Chevrolet",
+		"Model:" : "Impala",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Notes:" : "Brand new."
+	},
+	
+	"vehicle3": {
+		"New or Used:" : "New",
+		"Make:" : "Chevrolet",
+		"Model:" : "Camero",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Notes:" : "Brand new. FAST!"
+	},
+	
+	"vehicle4": {
+		"New or Used:" : "New",
+		"Make:" : "Ford",
+		"Model:" : "Fusion"],
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Notes:" : "Brand new. Great gas mileage."
+	},
+	
+	"vehicle5": {
+		"New or Used:" : "New",
+		"Make:" : "Ford",
+		"Model:" : "Explorer",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	},
+	
+	"vehicle6": {
+		"New or Used:" : "New",
+		"Make:" : "Ford",
+		"Model:" : "F-150",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	},
+	
+	"vehicle7": {
+		"New or Used:" : "New",
+		"Make:" : "Buick",
+		"Model:" : "Lacrosse",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	},
+	
+	"vehicle8": {
+		"New or Used:" : "New",
+		"Make:" : "Buick",
+		"Model:" : "Enclave",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	},
+	
+	"vehicle9": {
+		"New or Used:" : "New",
+		"Make:" : "Buick",
+		"Model:" : "Century",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	},
+	
+	"vehicle10": {
+		"New or Used:" : "New",
+		"Make:" : "Dodge",
+		"Model:" : "Durango",
+		"Year:" : "2013",
+		"Mileage:" : "1",
+		"Condition:" : "5",
+		"Date:" : "3/25/2013",
+		"Info:" : "Brand new."
+	}
+};
