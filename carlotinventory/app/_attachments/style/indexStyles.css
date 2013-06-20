@@ -1,0 +1,9 @@
+/* John Cardiff-Winchell
+MIU 1304
+Project week 4 */
+
+label.error{
+	display:block;
+	margin: 10px 0;
+	color: red;
+}
