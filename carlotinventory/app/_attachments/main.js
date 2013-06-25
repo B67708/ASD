@@ -109,64 +109,71 @@ $('#about').on('pageinit', function (){
 		});
 	}
 };*/
-
-var getData = function(someThing){
-	var label = ["New or Used: ", "Make: ", "Model: ", "Year: ", "Mileage: ", "Condition: ", "Date: ", "Info: "];
+var getData = function(){
+	var label = ["New or Used: ", "Make: ", "Model: ", "Year: ", "Mileage: ", "Condition: ", "Date: ", "Info: "];	
+	var appendLoc = $('#invConent').html("");
 	
-	var appendLoc = $("#invContent").html("");
-	someThing = false;
-	for(var i=0, j=localStorage.length; i<j; i++){
-		var key = localStorage.key(i);
-		var value = localStorage.getItem(key);
-		var object = JSON.parse(value);
-		
-		var div = $("<div>")
-			.attr ("data-role", "listview")
-			.attr ("id", key)
-			.appendTo (appendLoc);
-			
-		var ul = $('<ul>').appendTo(div);
-		var count = 0;
-		for(var r in object){
-			var li =$('<li>')
-				.html(label[count] + object[r])
-				.appendTo(ul);
-				count++;
-		}
-		var buttHoldDiv = $('<div>').attr('class', 'ui-grid-a').appendTo(div);
-		var editButtDiv = $('<div>').attr('class', 'ui-block-b').appendTo(buttHoldDiv);
-		var delButtDiv = $('<div>').attr('class', 'ui-block-b').appendTo(buttHoldDiv);
-		var editButt = $('<a>')
-			.attr('data-role', 'button')
-			.attr('href','#addItem')
-			.html('Edit')
-			.data('key', key)
-			.appendTo(editButtDiv)
-			.on('click', editInv);
-			
-		var delButt = $('<a>')
-			.attr('data-role', 'button')
-			.attr('href', '#')
-			.html('Remove')
-			.data('key', key)
-			.appendTo(delButtDiv)
-			.on('click', delInv);
-			
-		$(div).trigger('create');
-	} 
-	$(appendLoc).trigger('create');
-
-}
-
+	$.couch.db('asd').view('app/newInv', {
+		success: function(data){
+			//console.log(data);
+			$.each(data.rows, function(index,newInv){
+				var div = $('<div>')
+					.attr('data-role', 'listview')
+					.attr('id', newInv.key)
+					.appendTo(appendLoc);
+					
+					
+				var ul = $('<ul>').appendTo(div)
+				var count = 0;
+				for(var r in newInv.value){
+					var li = $('<li>')
+						.html(label[count] + newInv.value[r])
+						.appendTo(ul);
+						
+						count++
+				}
+				
+				var buttHoldDiv = $('<div>').attr('class','ui-grid-a').appendTo(div);
+				var editButtDiv = $('<div>').attr('class', 'ui-block-a').appendTo(buttHoldDiv);
+				var delButtDiv = $('<div>').attr('class', 'ui-block-b').appendTo(buttHoldDiv);
+				var editButt = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#addItem')
+					.html('Edit')
+					.data('key', newInv.key[0])
+					.data('rev', newInv.key[1])
+					.appendTo(editButtDiv)
+					.on('click', editInv);
+					
+				var delButt = $('<a>')
+					.attr('data-role', 'button')
+					.attr('href', '#')
+					.html('Remove')
+					.data('key', newInv.key[0])
+					.data('rev', newInv.key[1])
+					.appendTo(delButtDiv)
+					.on('click', delInv);
+					
+					//console.log(type.key[0]);
+					//console.log(type.key[1]);
+					$(div).trigger('create');	
+			})
+			$(appendLoc).trigger('create');
+		}	
+	});
+};
 
 var storeData = function(data){
-	key = $('#submit').data('key');
-	if(!key){
-		var id= Math.floor(Math.random()*123456789);
-	}else{
-		var id = key;
-	}
+	var key = $('#sumbit').data('key');
+	var rev = $('#submit').data('rev');
+	//console.log('key');
+	//console.log('rev');
 	var newInv = {};
+	
+	if(rev){
+		newInv._id = key;
+		newInv._rev = rev;
+	}
 		newInv.newUsed = data[0].value;
 		newInv.makeMenu = data[1].value;
 		newInv.modelMenu = data[2].value;
@@ -176,42 +183,54 @@ var storeData = function(data){
 		newInv.dateBox = data[6].value;
 		newInv.infoBox = data[7].value;
 		
-		localStorage.setItem(id, JSON.stringify(newInv));
-		$('#submit').html('Save Vehicle').removeData('key');
-		alert("Vehicle Saved!");
-		$.mobile.changePage("#main");
+		//console.log(type);
+		
+		$.couch.db('asd').saveDoc(newInv,{
+			success: function(newInv){
+			alert("Vehicle Saved");
+			$('#asd').html('Save Vehicle');
+			window.location.reload(true)
+			$.mobile.changePage('#main');
+			}
+		})
 };
 
 var editInv = function(){
-	var data = $(this).data("key");
-	var invValue = localStorage.getItem(data);
-	var inv = JSON.parse(invValue);
+	var key = $(this).data('key');
+	var rev = $(this).data('rev');
 	
-	$('#newUsed').val(inv.newUsed);
-	$('#makeMenu').val(inv.makeMenu);
-	$('#modelMenu').val(inv.modelMenu);
-	$('#yearBox').val(inv.yearBox);
-	$('#mileBox').val(inv.mileBox);
-	$('#conditionSlider').val(inv.conditionSlider);
-	$('#dateBox').val(inv.dateBox);
-	$('#infoBox').val(inv.infoBox);
+	$.couch.db('asd').openDoc(key,{
+		success: function(newInv){
+			$('#newUsed').val(newInv.newUsed);
+			$('#makeMenu').val(newInv.makeMenu);
+			$('#modelMenu').val(newInv.modelMenu);
+			$('#yearBox').val(newInv.yearBox);
+			$('#mileBox').val(newInv.mileBox);
+			$('#conditionSlider').val(newInv.conditionSlider);
+			$('#dateBox').val(newInv.dateBox);
+			$('#infoBox').val(newInv.infoBox);
+			$('#submit').attr('value', "Submit Changes").data('key', key).data('rev', rev);
+			window.location.reload(true);
+			$.mobile.changePage('#main');
+		}
+		
+	});
 };
 
 var delInv = function(){
 	var ask = confirm("Are you sure you want to delete this vehicle?");
-	if(ask){
-		localStorage.removeItem($(this).data('key'));
-		window.location.reload();
-	}else{
-		alert("Vehicle wasn't deleted");
-	}
-};
-
-var clearLocal = function(){
-	if(localStorage === 0){
-		alert("There isn't anything to clear.")
-	}else{
-		localStorage.clear();
-		alert("Local Storage was cleared.");
-	}
-};
+		if(ask){
+			var doc = {
+				'_id': $(this).data('key'),
+				'_rev': $(this).data('rev')
+			};
+			$.couch.db('asd').removeDoc(doc, {
+				success: function(data){
+					alert("Vehicle Was Removed");
+					window.location.reload();
+				}
+			});
+		}else{
+			alert("Vehicle not Deleted.");
+		}
+};		
