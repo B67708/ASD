@@ -24,7 +24,7 @@ $('#addItem').on('pageinit', function(){
 	
 
 $('#inventory').on('pageinit', function (){
-	getData();
+	getData(false);
 });
 
 $('#about').on('pageinit', function (){
@@ -41,7 +41,7 @@ $('#about').on('pageinit', function (){
 				var yearBox = newInv.value.Year;
 				var mileBox = newInv.value.Mile;
 				var conditionSlider = newInv.value.Condition;
-				var dateBox = newInv.value.Date;
+				var myDate = newInv.value.Date;
 				var infoBox = newInv.value.Info;
 				
 				$("#list").append(
@@ -111,7 +111,7 @@ $('#about').on('pageinit', function (){
 };*/
 var getData = function(){
 	var label = ["New or Used: ", "Make: ", "Model: ", "Year: ", "Mileage: ", "Condition: ", "Date: ", "Info: "];	
-	var appendLoc = $('#invConent').html("");
+	var appendLoc = $('#invContent').html("");
 	
 	$.couch.db('asd').view('app/newInv', {
 		success: function(data){
@@ -180,7 +180,7 @@ var storeData = function(data){
 		newInv.yearBox = data[3].value;
 		newInv.mileBox = data[4].value;
 		newInv.conditionSlider = data[5].value;
-		newInv.dateBox = data[6].value;
+		newInv.myDate = data[6].value;
 		newInv.infoBox = data[7].value;
 		
 		//console.log(type);
@@ -188,7 +188,7 @@ var storeData = function(data){
 		$.couch.db('asd').saveDoc(newInv,{
 			success: function(newInv){
 			alert("Vehicle Saved");
-			$('#asd').html('Save Vehicle');
+			$('#submit').html('Save Vehicle');
 			window.location.reload(true)
 			$.mobile.changePage('#main');
 			}
@@ -201,17 +201,17 @@ var editInv = function(){
 	
 	$.couch.db('asd').openDoc(key,{
 		success: function(newInv){
-			$('#newUsed').val(newInv.newUsed);
-			$('#makeMenu').val(newInv.makeMenu);
-			$('#modelMenu').val(newInv.modelMenu);
+		console.log('fired')
+			$('#newUsed').val(newInv.newUsed).selectmenu("refresh");
+			$('#makeMenu').val(newInv.makeMenu).selectmenu("refresh");
+			$('#modelMenu').val(newInv.modelMenu).selectmenu("refresh");
 			$('#yearBox').val(newInv.yearBox);
 			$('#mileBox').val(newInv.mileBox);
 			$('#conditionSlider').val(newInv.conditionSlider);
-			$('#dateBox').val(newInv.dateBox);
+			$('#myDate').val(newInv.myDate);
 			$('#infoBox').val(newInv.infoBox);
 			$('#submit').attr('value', "Submit Changes").data('key', key).data('rev', rev);
-			window.location.reload(true);
-			$.mobile.changePage('#main');
+			console.log(newInv)
 		}
 		
 	});

@@ -7,7 +7,7 @@ function(doc){
 			"Year": doc.yearBox,
 			"Mileage": doc.mileBox,
 			"Condition": doc.conditionSlider,
-			"Date": doc.dateBox,
+			"Date": doc.myDate,
 			"Info": doc.infoBox
 		});
 	}
